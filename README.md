@@ -1,2 +1,2 @@
 # hepatica
-*hepatica* is a multi-purpose progress tracking tool.
+*hepatica* is a progress tracking tool to satisfy my vanity :)
