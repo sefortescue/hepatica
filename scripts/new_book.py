@@ -3,9 +3,11 @@
 import sqlite3
 import sys
 
-def main():
+def new_book():
     conn = sqlite3.connect('local.db')
     curs = conn.cursor()
     curs.execute("INSERT INTO books(title, author) VALUES(?, ?)", (sys.argv[1], sys.argv[2]))
+    conn.commit()
+    conn.close()
 if __name__ == "__main__":
-    main()
+    new_book()

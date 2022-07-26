@@ -2,11 +2,11 @@
 
 import sqlite3
 
-def main():
+def list_books():
     conn = sqlite3.connect('local.db')
     curs = conn.cursor()
     curs.execute("SELECT * FROM books")
-    dat = curs.fetchall()
-    print('\n'.join(str(a) for a in dat))
+    print(curs.fetchall())
+    conn.close()
 if __name__ == "__main__":
-    main()
+    list_books()
