@@ -13,7 +13,7 @@ check_exit () {
 }
 
 confirm () {
-	echo -n "Confirm? Enter (Y/N): "
+	echo -n "Confirm? (Y/N): "
 	read confirm_yn
     if [[ "$confirm_yn" == "Y" ]]
     then
@@ -54,7 +54,7 @@ do
 			;;
 		e)
             echo "Building..."
-			scripts/build_html.py 2>/dev/null
+			scripts/build_html.py > docs/index.html
 			echo "Done!"
 			echo "Goodbye."
 			exit 0
