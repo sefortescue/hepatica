@@ -3,6 +3,7 @@
 list_db () {
 	echo "Here are the current book entries:"
 	scripts/list_db.py
+    echo -n "Enter book id: "
 }
 
 check_exit () {
@@ -28,7 +29,7 @@ scripts/create_db.py
 
 while :
 do
-	echo -e "Available Actions: [n] = New Book, [r] = Remove Book,\n[p] = Progress, [e] = Build and Exit"
+	echo -e "Available Actions: [n] = New Book, [r] = Remove Book,\n[p] = Progress, [s] = Set Status, [e] = Build and Exit"
 	echo -n "Enter an action: "
 	read curr_action
 	case "$curr_action" in
@@ -42,16 +43,23 @@ do
 			;;
 		r)
 			list_db
-			echo -n "Enter book id: "
 			read rm_id
 			confirm "rm_book.py" $rm_id
 			;;
 		p)
 			list_db
-			echo -n "Enter book id: "
 			read prog_id
 			confirm	"prog_book.py" $prog_id
 			;;
+        s)
+            list_db
+            read stat_id
+            echo "Status Options: [0] = Ongoing, [1] = Hold, [2] = Concluded"
+            echo -n "Enter an Option: "
+            read stat_op
+            scripts/stat_book.py $stat_id $stat_op
+            check_exit
+            ;;
 		e)
             echo "Building..."
 			scripts/build_html.py > docs/index.html
