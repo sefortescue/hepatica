@@ -1,8 +1,8 @@
 #!/bin/bash
 
 list_db () {
-	echo "Here are the current book entries:"
-	scripts/list_db.py
+    echo "Here are the current book entries:"
+    scripts/list_db.py
     echo -n "Enter book id: "
 }
 
@@ -14,8 +14,8 @@ check_exit () {
 }
 
 confirm () {
-	echo -n "Confirm? (Y/N): "
-	read confirm_yn
+    echo -n "Confirm? (Y/N): "
+    read confirm_yn
     if [[ "$confirm_yn" == "Y" ]]
     then
         scripts/$1 $2 #2>/dev/null
@@ -29,28 +29,28 @@ scripts/create_db.py
 
 while :
 do
-	echo -e "Available Actions: [n] = New Book, [r] = Remove Book,\n[p] = Progress, [s] = Set Status, [e] = Build and Exit"
-	echo -n "Enter an action: "
-	read curr_action
-	case "$curr_action" in
-		n)
-			echo -n "Enter book title: "
-			read book_title
-			echo -n "Enter book author(s): "
-			read book_author
-			scripts/new_book.py "$book_title" "$book_author" 2>/dev/null
+    echo -e "Available Actions: [n] = New Book, [r] = Remove Book,\n[p] = Progress, [s] = Set Status, [e] = Build and Exit"
+    echo -n "Enter an action: "
+    read curr_action
+    case "$curr_action" in
+        n)
+            echo -n "Enter book title: "
+            read book_title
+            echo -n "Enter book author(s): "
+            read book_author
+            scripts/new_book.py "$book_title" "$book_author" 2>/dev/null
             check_exit
-			;;
-		r)
-			list_db
-			read rm_id
-			confirm "rm_book.py" $rm_id
-			;;
-		p)
-			list_db
-			read prog_id
-			confirm	"prog_book.py" $prog_id
-			;;
+            ;;
+        r)
+            list_db
+            read rm_id
+            confirm "rm_book.py" $rm_id
+            ;;
+        p)
+            list_db
+            read prog_id
+            confirm "prog_book.py" $prog_id
+            ;;
         s)
             list_db
             read stat_id
@@ -60,15 +60,15 @@ do
             scripts/stat_book.py $stat_id $stat_op
             check_exit
             ;;
-		e)
+        e)
             echo "Building..."
-			scripts/build_html.py > docs/index.html
-			echo "Done!"
-			echo "Goodbye."
-			exit 0
-			;;
-		*)
-			echo "Unknown action."
-			;;
-	esac
+            scripts/build_html.py > docs/index.html
+            echo "Done!"
+            echo "Goodbye."
+            exit 0
+            ;;
+        *)
+            echo "Unknown action."
+            ;;
+    esac
 done
