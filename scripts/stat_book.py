@@ -13,6 +13,7 @@ def stat_book():
     elif sys.argv[2] == "2":
         curs.execute("UPDATE books SET status=2 WHERE id=?", (sys.argv[1])) 
     else:
+        conn.close()
         exit(1) 
     conn.commit()
     conn.close()

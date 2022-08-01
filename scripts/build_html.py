@@ -6,16 +6,12 @@ import pandas as pd
 import sqlite3
 
 def build():
-    # setup local database connection
-    conn = sqlite3.connect('local.db')
-    curs = conn.cursor()
-    
     # create document object and do stuff to it
     doc = dominate.document(title="hepatica")
 
     with doc.head:
         link(rel="stylesheet", href="css/style.css")
-        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Ubuntu\&display=swap")
 
     with doc:
         books = section(cls="books_list")
@@ -24,24 +20,37 @@ def build():
     with books:
         h2("Key:", cls="books_key_title")
         key = div(cls="books_key")    
+        with key:
+            green = div(cls="green_square")
+            yellow = div(cls="yellow_square")
+            black = div(cls="black_square") 
+            with green:
+                p("This book is currently being read.")
+            with yellow:
+                p("This book is on hold to be read.")
+            with black:
+                p("This book has been finished and/or is used as a reference.")
 
-    with key:
-        green = div(cls="green_square")
-        yellow = div(cls="yellow_square")
-        red = div(cls="red_square") 
+    # setup local database connection
+    conn = sqlite3.connect('local.db')
+    books_df = pd.read_sql_query("SELECT * FROM books", conn)
+    prog_df = pd.read_sql_query("SELECT * FROM apus", conn)
+   
+    for i in range(len(books_df.index)):
+        book_auth = "{}, {}".format(books_df.iat[i,1], books_df.iat[i,2])
+        curr_div = books.add(div(cls="books_item"))
+        curr_div.add(h2(book_auth))
 
-    with green:
-        p("TEXT")
+        # ADD SUBSET OF PROG_DF FOR EACH BOOK ID 
 
-    with yellow:
-        p("TEXT")
+        for j in range(len(prog_df.index)):
+            curr_div.add(div(title=prog_df
+        curr_stat = books_df.iat[i,3]
+        if curr_stat == 0:
+            
+        elif curr_stat == 1:
 
-    with red:
-        p("TEXT")            
-
-    #books += h1(row)
-
-    df = pd.read_sql_query("SELECT * FROM books", conn)
+        elif curr_stat == 2:
 
     print(doc)
 
