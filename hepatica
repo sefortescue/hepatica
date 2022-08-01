@@ -29,10 +29,13 @@ scripts/create_db.py
 
 while :
 do
-    echo -e "Available Actions: [n] = New Book, [r] = Remove Book,\n[p] = Progress, [s] = Set Status, [e] = Build and Exit"
+    echo -e "Available Actions: [l] = List, [n] = New Book, [r] = Remove Book,\n[p] = Progress, [s] = Set Status, [b] = Build, [e] = Exit"
     echo -n "Enter an action: "
     read curr_action
     case "$curr_action" in
+        l)
+            list_db
+            ;;
         n)
             echo -n "Enter book title: "
             read book_title
@@ -60,10 +63,12 @@ do
             scripts/stat_book.py $stat_id $stat_op 2>/dev/null
             check_exit
             ;;
-        e)
+        b)
             echo "Building..."
             scripts/build_html.py > docs/index.html
             echo "Done!"
+            ;;
+        e)
             echo "Goodbye."
             exit 0
             ;;
