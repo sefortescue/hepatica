@@ -9,7 +9,7 @@ list_db () {
 check_exit () {
     if [[ $? != 0 ]]
     then
-        echo "Internal Error. Check Arguments."
+        echo "Internal Error: check arguments and/or inputs."
     fi
 }
 
@@ -18,7 +18,7 @@ confirm () {
     read confirm_yn
     if [[ "$confirm_yn" == "Y" ]]
     then
-        scripts/$1 $2 #2>/dev/null
+        scripts/$1 $2 2>/dev/null
         check_exit
     else
         echo "Aborting!" 
@@ -57,7 +57,7 @@ do
             echo "Status Options: [0] = Ongoing, [1] = Hold, [2] = Concluded"
             echo -n "Enter an Option: "
             read stat_op
-            scripts/stat_book.py $stat_id $stat_op
+            scripts/stat_book.py $stat_id $stat_op 2>/dev/null
             check_exit
             ;;
         e)
