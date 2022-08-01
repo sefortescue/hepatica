@@ -2,6 +2,7 @@
 
 import dominate
 from dominate.tags import *
+import pandas as pd
 import sqlite3
 
 def build():
@@ -17,11 +18,30 @@ def build():
         link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap")
 
     with doc:
-        books = section(cls="books", id="books")
-        footer = section(cls="foot", id="foot")
-    
+        books = section(cls="books_list")
+        footer = section(cls="footer")
+
     with books:
-        h1("TEST")
+        h2("Key:", cls="books_key_title")
+        key = div(cls="books_key")    
+
+    with key:
+        green = div(cls="green_square")
+        yellow = div(cls="yellow_square")
+        red = div(cls="red_square") 
+
+    with green:
+        p("TEXT")
+
+    with yellow:
+        p("TEXT")
+
+    with red:
+        p("TEXT")            
+
+    #books += h1(row)
+
+    df = pd.read_sql_query("SELECT * FROM books", conn)
 
     print(doc)
 
