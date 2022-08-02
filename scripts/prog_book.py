@@ -10,6 +10,7 @@ def prog_book():
     today = date.today()
     curs.execute("INSERT INTO apus(id, date) VALUES(?, ?)", (sys.argv[1], today.strftime("%B %d, %Y")
 ))
+    curs.execute("UPDATE books SET count = count + 1 WHERE id=?", (sys.argv[1]))
     conn.commit()
     conn.close()
 if __name__ == "__main__":

@@ -18,8 +18,9 @@ def build():
         footer = section(cls="footer")
 
     # setup local database connection
-    conn = sqlite3.connect('local.db')
+    conn = sqlite3.connect("local.db")
     books_df = pd.read_sql_query("SELECT * FROM books", conn)
+    books_df = books_df.sort_values(by="count", ascending=False)
     prog_df = pd.read_sql_query("SELECT * FROM apus", conn)
    
     for i in range(len(books_df.index)):
