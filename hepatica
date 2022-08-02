@@ -18,7 +18,7 @@ confirm () {
     read confirm_yn
     if [[ "$confirm_yn" == "Y" ]]
     then
-        scripts/$1 $2 2>/dev/null
+        scripts/$1 "$2"
         check_exit
     else
         echo "Aborting!" 
@@ -41,7 +41,7 @@ do
             read book_title
             echo -n "Enter book author(s): "
             read book_author
-            scripts/new_book.py "$book_title" "$book_author" 2>/dev/null
+            scripts/new_book.py "$book_title" "$book_author"
             check_exit
             ;;
         r)
@@ -60,7 +60,7 @@ do
             echo "Status Options: [0] = Ongoing, [1] = Hold, [2] = Concluded"
             echo -n "Enter an Option: "
             read stat_op
-            scripts/stat_book.py $stat_id $stat_op 2>/dev/null
+            scripts/stat_book.py $stat_id $stat_op
             check_exit
             ;;
         b)
