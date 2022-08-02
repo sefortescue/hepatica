@@ -25,8 +25,8 @@ def build():
    
     for i in range(len(books_df.index)):
         curr_book = books.add(div(cls="books_item"))
-        curr_book.add(h2(books_df.iat[i,1]))
-        curr_book.add(h3(books_df.iat[i,2]))
+        curr_book.add(h2(books_df.iat[i,1], cls="book_title"))
+        curr_book.add(h3(books_df.iat[i,2], cls="book_auth"))
         curr_prog = curr_book.add(div(cls="prog_list"))
         curr_df = prog_df.loc[prog_df['id'] == books_df.iat[i,0]]
         for j in range(len(curr_df.index)):
