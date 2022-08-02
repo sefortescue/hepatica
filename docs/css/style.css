@@ -42,8 +42,8 @@ html {
 }
 
 body {
-    background: var(--clr-light);
-    color: var(--clr-dark);
+    background: var(--clr-dark);
+    color: var(--clr-light);
     margin: 0;
     font-family: var(--ff-primary);
     font-size: var(--fs-body);
@@ -54,37 +54,9 @@ section {
     padding: 4em 4em;
 }
 
-img {
-    display: block;
-    max-width: 100%;
-}
-
-strong{font-weight: var(--fw-bold)}
-
 :focus {
     outline: 3px solid var(--clr-accent);
     outline-offset: 3px;
-}
-
-/* Buttons */
-
-.btn {
-    display:inline-block;
-    padding: .5em 2.5em;
-    background: var(--clr-accent);
-    color: var(--clr-dark);
-    text-decoration: none;
-    cursor: pointer;
-    font-size: .8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: var(--fw-bold);
-    transition: transform 200ms ease-in-out;
-    border: 3px solid var(--clr-light);
-}
-
-.btn:hover {
-    transform: scale(1.1);
 }
 
 /* Typography */
@@ -100,14 +72,37 @@ h1 {font-size: var(--fs-h1)}
 h2 {font-size: var(--fs-h2)}
 h3 {font-size: var(--fs-h3)}
 
-/* Credits */
+/* Books */
 
-.credit {
-    font-size: var(--fs-small);
+.prog_list {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fit, 15px);
+    gap: 0.5em;
+    margin-top: 2em;
+    margin-bottom: 3em;
 }
 
-.credit__link:link {
-    text-decoration: underline;
-    text-decoration-color: var(--clr-accent);
+.prog_item {
+    height: 15px;
+    width: 15px;
+    background-color: var(--clr-accent); 
+    padding: 5px;
 }
 
+.prog_item:hover {
+    transform: scale(1.5);
+    transition: transform 50ms ease-in-out;
+}
+
+.stat_on {
+    background-color: #789A31;
+}
+
+.stat_hold {
+    background-color: #FFD700;
+}
+
+.stat_conc {
+    background-color: #000000;
+}

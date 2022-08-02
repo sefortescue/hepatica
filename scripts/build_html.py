@@ -24,18 +24,19 @@ def build():
    
     for i in range(len(books_df.index)):
         book_auth = "{}, {}".format(books_df.iat[i,1], books_df.iat[i,2])
-        curr_div = books.add(div(cls="books_item"))
-        curr_div.add(h2(book_auth))
+        curr_book = books.add(div(cls="books_item"))
+        curr_book.add(h2(book_auth))
+        curr_prog = curr_book.add(div(cls="prog_list"))
         curr_df = prog_df.loc[prog_df['id'] == books_df.iat[i,0]]
         for j in range(len(curr_df.index)):
-            curr_div.add(div(cls="prog_item",title=curr_df.iat[j,1]))
+            curr_prog.add(div(cls="prog_item",title=curr_df.iat[j,1]))
         curr_stat = books_df.iat[i,3]
         if curr_stat == 0:
-            curr_div.add(div(cls="stat_on",title="Ongoing!"))
+            curr_prog.add(div(cls="prog_item stat_on",title="Ongoing!"))
         elif curr_stat == 1:
-            curr_div.add(div(cls="stat_hold",title="On Hold!"))
+            curr_prog.add(div(cls="prog_item stat_hold",title="On Hold!"))
         elif curr_stat == 2:
-            curr_div.add(div(cls="stat_conc",title="Concluded!"))
+            curr_prog.add(div(cls="prog_item stat_conc",title="Concluded!"))
     print(doc)
 
 if __name__ == "__main__":
