@@ -33,11 +33,11 @@ def build():
             curr_prog.add(div(cls="prog_item",title=curr_df.iat[j,1]))
         curr_stat = books_df.iat[i,3]
         if curr_stat == 0:
-            curr_prog.add(div(cls="prog_item stat_on",title="Reading!"))
+            curr_prog.add(div(cls="prog_item stat_on",title="Reading..."))
         elif curr_stat == 1:
-            curr_prog.add(div(cls="prog_item stat_hold",title="On Hold and/or Used as Reference!"))
+            curr_prog.add(div(cls="prog_item stat_hold",title="Reference!"))
         elif curr_stat == 2:
-            curr_prog.add(div(cls="prog_item stat_conc",title="Read!"))
+            curr_prog.add(div(cls="prog_item stat_conc",title="Concluded!"))
     print(doc)
 
 if __name__ == "__main__":
